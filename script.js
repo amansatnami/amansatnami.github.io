@@ -44,3 +44,19 @@ toggle.addEventListener("click", () => {
     toggle.textContent = "🌙 Dark Mode";
   }
 });
+
+
+let soundEnabled = true;
+const clickSound = new Audio("click.mp3");
+
+function playClick() {
+  if (soundEnabled) {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  }
+}
+
+document.getElementById("soundToggle").addEventListener("click", () => {
+  soundEnabled = !soundEnabled;
+  document.getElementById("soundToggle").textContent = soundEnabled ? "🔊" : "🔇";
+});
