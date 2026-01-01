@@ -1,3 +1,30 @@
+const nameText = "AMAN SATNAMI";
+const skillText = "CLOUD  •  DATA  •  LINUX  •  SQL";
+
+let i = 0;
+let j = 0;
+
+function typeName() {
+  if (i < nameText.length) {
+    document.getElementById("typingName").textContent += nameText[i];
+    i++;
+    playClick();
+    setTimeout(typeName, 120);
+  } else {
+    setTimeout(typeSkills, 500);
+  }
+}
+
+function typeSkills() {
+  if (j < skillText.length) {
+    document.getElementById("typingSkills").textContent += skillText[j];
+    j++;
+    setTimeout(typeSkills, 60);
+  }
+}
+
+window.onload = typeName;
+
 const toggle = document.getElementById("themeToggle");
 const body = document.body;
 
