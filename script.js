@@ -47,15 +47,26 @@ toggle.addEventListener("click", () => {
 
 
 let soundEnabled = true;
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+let audioCtx = null;
+
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
+}
+
 
 function playClick() {
-  if (!soundEnabled) return;
+  if (!soundEnabled || !audioCtx) return;
 
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
 
-  osc.type = "square";        // arcade feel
+  osc.type = "square";
   osc.frequency.setValueAtTime(800, audioCtx.currentTime);
 
   gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
@@ -63,6 +74,14 @@ function playClick() {
     0.001,
     audioCtx.currentTime + 0.08
   );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.08);
+}
+
 
   osc.connect(gain);
   gain.connect(audioCtx.destination);
@@ -79,5 +98,7 @@ document.getElementById("soundToggle").addEventListener("click", () => {
 
 
 
-document.addEventListener("keydown", playClick);
+document.addEventListener("click", initAudio, { once: true });
+document.addEventListener("keydown", initAudio, { once: true });
+
 
