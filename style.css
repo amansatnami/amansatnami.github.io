@@ -1,27 +1,59 @@
+:root {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --card: #ffffff;
+  --header: #020617;
+  --link: #38bdf8;
+}
+
+body.dark {
+  --bg: #020617;
+  --text: #e5e7eb;
+  --card: #0f172a;
+  --header: #000000;
+  --link: #7dd3fc;
+}
+
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f8fafc;
-  color: #0f172a;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 
 header {
-  background: #020617;
-  color: #e5e7eb;
+  background: var(--header);
+  color: var(--text);
   text-align: center;
   padding: 40px 20px;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 38px;
+.top-bar {
+  text-align: right;
+  max-width: 900px;
+  margin: 0 auto 10px;
+}
+
+#themeToggle {
+  background: none;
+  border: 1px solid var(--link);
+  color: var(--link);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .links a {
-  color: #38bdf8;
-  margin: 0 12px;
+  color: var(--link);
+  margin: 0 10px;
   text-decoration: none;
   font-weight: 500;
+}
+
+.resume-btn {
+  border: 1px solid var(--link);
+  padding: 6px 12px;
+  border-radius: 6px;
 }
 
 section {
@@ -31,20 +63,20 @@ section {
 }
 
 h2 {
-  border-bottom: 2px solid #e5e7eb;
+  border-bottom: 2px solid #334155;
   padding-bottom: 6px;
 }
 
 .project {
-  background: white;
+  background: var(--card);
   padding: 16px;
   margin-top: 16px;
   border-radius: 8px;
 }
 
 footer {
-  background: #e5e7eb;
   text-align: center;
   padding: 18px;
-  margin-top: 40px;
+  background: #e5e7eb;
+  color: #020617;
 }
