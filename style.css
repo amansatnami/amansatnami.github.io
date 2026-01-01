@@ -68,6 +68,16 @@ header {
   cursor: pointer;
 }
 
+.links {
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;
+  gap: 20px;                 /* spacing between buttons */
+  margin-top: 20px;
+  flex-wrap: wrap;           /* mobile safe */
+}
+
+
 .links a {
   color: var(--link);
   margin: 0 10px;
