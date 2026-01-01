@@ -47,19 +47,36 @@ toggle.addEventListener("click", () => {
 
 
 let soundEnabled = true;
-const clickSound = new Audio("click.mp3");
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playClick() {
-  if (soundEnabled) {
-    clickSound.currentTime = 0;
-    clickSound.play();
-  }
+  if (!soundEnabled) return;
+
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  osc.type = "square";        // arcade feel
+  osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+
+  gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioCtx.currentTime + 0.08
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.08);
 }
 
 document.getElementById("soundToggle").addEventListener("click", () => {
   soundEnabled = !soundEnabled;
-  document.getElementById("soundToggle").textContent = soundEnabled ? "🔊" : "🔇";
+  document.getElementById("soundToggle").textContent =
+    soundEnabled ? "🔊" : "🔇";
 });
+
 
 
 document.addEventListener("keydown", playClick);
