@@ -74,9 +74,12 @@ header {
   text-decoration: none;
   font-weight: 500;
 }
-header h1 {
-  color: #f8fafc;
+header h1,
+header p {
+  text-align: center;
+  margin: 10px 0;
 }
+
 
 
 
@@ -134,4 +137,24 @@ footer {
   padding: 18px;
   background: #e5e7eb;
   color: #020617;
+}
+
+
+.level {
+  background: var(--card);
+  border: 3px solid #38bdf8;
+  box-shadow: 6px 6px 0 #020617;
+  padding: 20px;
+  margin-top: 24px;
+  cursor: pointer;
+}
+
+.level span {
+  color: #38bdf8;
+  font-size: 10px;
+}
+
+.level:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 #020617;
 }
