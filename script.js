@@ -60,3 +60,7 @@ document.getElementById("soundToggle").addEventListener("click", () => {
   soundEnabled = !soundEnabled;
   document.getElementById("soundToggle").textContent = soundEnabled ? "🔊" : "🔇";
 });
+
+
+document.addEventListener("keydown", playClick);
+
